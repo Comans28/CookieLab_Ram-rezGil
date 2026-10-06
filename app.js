@@ -88,3 +88,22 @@ let saludoElem = document.getElementById('saludo');
 if(saludoElem) {
     saludoElem.innerHTML += `<br><br><small>Has visitado esta página ${visitas} veces.</small>`;
 }
+// --- FASE 5: Panel de control ---
+document.getElementById('btn-cambiar').addEventListener('click', () => {
+    let nuevoNombre = prompt("Introduce tu nuevo nombre:");
+    if (nuevoNombre) {
+        document.cookie = `usuario=${encodeURIComponent(nuevoNombre)}; max-age=${30*24*60*60}; path=/`;
+        location.reload(); // Recarga para actualizar el saludo
+    }
+});
+
+document.getElementById('btn-olvidar').addEventListener('click', () => {
+    if (confirm("¿Estás seguro de que quieres borrar todos tus datos?")) {
+        // Borramos todas las cookies poniéndoles max-age=0
+        document.cookie = "usuario=; max-age=0; path=/";
+        document.cookie = "tema=; max-age=0; path=/";
+        document.cookie = "idioma=; max-age=0; path=/";
+        document.cookie = "visitas=; max-age=0; path=/";
+        location.reload(); // Recarga para reiniciar la web
+    }
+});
