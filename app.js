@@ -107,3 +107,19 @@ document.getElementById('btn-olvidar').addEventListener('click', () => {
         location.reload(); // Recarga para reiniciar la web
     }
 });
+// --- FINAL NOTA: Fecha y Caducidad Corta ---
+
+// 1. Mostrar y guardar la fecha de la última visita
+let ultimaVisita = leerCookie('ultimaVisita');
+if (ultimaVisita) {
+    let saludoElem = document.getElementById('saludo');
+    if (saludoElem) {
+        saludoElem.innerHTML += `<br><br><small>Tu última visita fue el ${ultimaVisita}</small>`;
+    }
+}
+// Guardamos la fecha y hora de hoy para la próxima vez
+let fechaHoy = new Date().toLocaleString();
+document.cookie = `ultimaVisita=${encodeURIComponent(fechaHoy)}; max-age=${30*24*60*60}; path=/`;
+
+// 2. Cookie de caducidad corta (1 minuto = 60 segundos)
+document.cookie = "cookieEfimera=DesaparecerePronto; max-age=60; path=/";
