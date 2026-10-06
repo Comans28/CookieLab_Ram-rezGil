@@ -71,3 +71,20 @@ document.getElementById('select-idioma').addEventListener('change', (e) => {
 
 // Ejecutar al cargar la página
 aplicarPreferencias();
+// --- FASE 4: Contador de visitas ---
+let visitas = leerCookie('visitas');
+
+if (!visitas) {
+    visitas = 1;
+} else {
+    visitas = Number(visitas) + 1;
+}
+
+// Guardamos el nuevo valor
+document.cookie = `visitas=${visitas}; max-age=${30*24*60*60}; path=/`;
+
+// Mostramos el texto debajo del saludo
+let saludoElem = document.getElementById('saludo');
+if(saludoElem) {
+    saludoElem.innerHTML += `<br><br><small>Has visitado esta página ${visitas} veces.</small>`;
+}
