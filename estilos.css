@@ -1,0 +1,17 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f4f4f9;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.oscuro {
+    background-color: #1a1a1a;
+    color: #f4f4f9;
+}
+
+button {
+    padding: 8px 15px;
+    cursor: pointer;
+}
